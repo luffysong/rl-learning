@@ -1,0 +1,50 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Env & secrets
+.env
+.env.local
+
+# IDE / OS
+.idea/
+.vscode/
+.history/
+.DS_Store
+*.swp
+
+# Model weights & checkpoints (too large for git)
+models/
+model/
+saved_dic/
+saved_dic1/
+*.bin
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Datasets
+data/
+local/
+# Logs
+*.log
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+.pi/
+.claude/
+.codex/
+.history/
+history/
