@@ -221,7 +221,7 @@ def train():
 
 
 def run_inference(model, tokenizer):
-    model.eval()
+   # model.eval()
     prompt = "Customer: I cannnot access my account.\n Agent: "
 
     # 两个假设的回答
@@ -231,12 +231,12 @@ def run_inference(model, tokenizer):
     text_good = prompt + good_response
     text_bad = prompt + bad_response
 
-    with torch.no_grad():
-        inputs_good = tokenizer(text_good, return_tensors="pt").to(DEVICE)
-        score_good = model(**inputs_good).logits.item()
+    #with torch.no_grad():
+    inputs_good = tokenizer(text_good, return_tensors="pt").to(DEVICE)
+    score_good = model(**inputs_good).logits.item()
 
-        inputs_bad = tokenizer(text_bad, return_tensors="pt").to(DEVICE)
-        score_bad = model(**inputs_bad).logits.item()
+    inputs_bad = tokenizer(text_bad, return_tensors="pt").to(DEVICE)
+    score_bad = model(**inputs_bad).logits.item()
 
     print(f"Prompt: {prompt.strip()}")
     print(f"Option A (Relevant): '{good_response.strip()}' -> Score: {score_good:.4f}")
@@ -249,7 +249,11 @@ def run_inference(model, tokenizer):
 
 
 if __name__ == "__main__":
-    train()
+    #train()
     #model = AutoModel.from_pretrained(SAVE_PATH)
-    #tokenizer = AutoTokenizer.from_pretrained(SAVE_PATH)
-    #run_inference(model, tokenizer);
+    model = AutoModelForSequenceClassification.from_pretrained(
+        SAVE_PATH,
+        num_labels = 1,
+    ).to(DEVICE)
+    tokenizer = AutoTokenizer.from_pretrained(SAVE_PATH)
+    run_inference(model, tokenizer)
