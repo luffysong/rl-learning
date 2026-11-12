@@ -1,0 +1,27 @@
+title = "gitleaks config"
+minVersion = "v8.24.0"
+
+[extend]
+useDefault = true
+[allowlist]
+description = "忽略依赖、构建目录"
+paths = [
+    '''node_modules/''',
+    '''.venv/''',
+    '''.git/''',
+    '''dist/''',
+    '''build/''',
+    '''local/''',
+    '''models/''',
+    '''data/''',
+    '''coverage/'''
+]
+
+[[rules]]
+id = "openai-bearer-sk"
+description = "OpenAI Bearer sk token"
+regex = '''Bearer\s+(sk-[a-zA-Z0-9]+)'''
+secretGroup = 1
+[[rules.entropies]]
+group = 1
+min = 3.5

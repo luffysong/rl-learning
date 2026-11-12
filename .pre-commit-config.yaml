@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: gitleaks
+        name: gitleaks
+        entry: gitleaks
+        args:
+          - protect
+          - --staged
+          - --verbose
+          - --redact
+        language: system
+        pass_filenames: false
+      - id: gitleaks-full
+        name: gitleaks full dir scan
+        entry: gitleaks
+        args:
+          - dir
+          - .
+          - --verbose
+          - --redact
+        language: system
+        pass_filenames: false
